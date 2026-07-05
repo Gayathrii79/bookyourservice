@@ -1,0 +1,22 @@
+{
+  "name": "bookyourservice-backend",
+  "version": "1.0.0",
+  "description": "Express + MongoDB backend for BookYourService lead-generation platform",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.0.0",
+    "mongoose": "^8.14.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
