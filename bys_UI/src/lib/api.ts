@@ -3,9 +3,7 @@
  * All requests go through this module so the base URL is set in one place.
  */
 
-const BASE_URL =
-  (import.meta.env.VITE_API_URL as string | undefined) ||
-  "http://localhost:5000";
+const BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) || "http://localhost:5000";
 
 export interface EnquiryPayload {
   name: string;
@@ -26,9 +24,7 @@ export interface ApiResponse<T = unknown> {
  * Submit an enquiry to POST /api/enquiry.
  * Throws an Error with a user-friendly message on failure.
  */
-export async function submitEnquiry(
-  payload: EnquiryPayload
-): Promise<ApiResponse> {
+export async function submitEnquiry(payload: EnquiryPayload): Promise<ApiResponse> {
   const res = await fetch(`${BASE_URL}/api/enquiry`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -39,8 +35,7 @@ export async function submitEnquiry(
 
   if (!res.ok || !json.success) {
     // Surface the first validation message when available
-    const detail =
-      json.errors?.[0]?.message || json.message || "Something went wrong.";
+    const detail = json.errors?.[0]?.message || json.message || "Something went wrong.";
     throw new Error(detail);
   }
 

@@ -27,7 +27,9 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist or has been moved.
         </p>
         <div className="mt-6">
-          <Link to="/" className="btn-primary">Go home</Link>
+          <Link to="/" className="btn-primary">
+            Go home
+          </Link>
         </div>
       </div>
     </div>
@@ -52,12 +54,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="btn-primary"
           >
             Try again
           </button>
-          <a href="/" className="btn-secondary">Go home</a>
+          <a href="/" className="btn-secondary">
+            Go home
+          </a>
         </div>
       </div>
     </div>
@@ -79,11 +86,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "BookYourService" },
       { property: "og:site_name", content: "BookYourService" },
       { property: "og:title", content: "BookYourService — Every Service You Need" },
-      { property: "og:description", content: "Discover trusted professionals across a wide range of services. Submit an enquiry and we'll connect you with the right expert." },
+      {
+        property: "og:description",
+        content:
+          "Discover trusted professionals across a wide range of services. Submit an enquiry and we'll connect you with the right expert.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "BookYourService — Every Service You Need" },
-      { name: "twitter:description", content: "Discover trusted professionals across a wide range of services." },
+      {
+        name: "twitter:description",
+        content: "Discover trusted professionals across a wide range of services.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

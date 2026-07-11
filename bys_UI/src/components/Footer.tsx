@@ -9,18 +9,34 @@ export function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-            Every service you need, just one click away. Discover trusted
-            professionals and let our team handle the rest.
+            Every service you need, just one click away. Discover trusted professionals and let our
+            team handle the rest.
           </p>
         </div>
 
         <div>
           <h4 className="text-sm font-semibold text-foreground">Quick Links</h4>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link to="/" className="text-muted-foreground hover:text-primary">Home</Link></li>
-            <li><Link to="/services" className="text-muted-foreground hover:text-primary">Services</Link></li>
-            <li><Link to="/about" className="text-muted-foreground hover:text-primary">About</Link></li>
-            <li><Link to="/contact" className="text-muted-foreground hover:text-primary">Contact</Link></li>
+            <li>
+              <Link to="/" className="text-muted-foreground hover:text-primary">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="text-muted-foreground hover:text-primary">
+                Services
+              </Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-muted-foreground hover:text-primary">
+                About
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-muted-foreground hover:text-primary">
+                Contact
+              </Link>
+            </li>
           </ul>
         </div>
 

@@ -33,7 +33,9 @@ export const Route = createFileRoute("/services/$slug")({
     <div className="container-x py-24 text-center">
       <h1 className="text-3xl font-semibold text-foreground">Category not found</h1>
       <p className="mt-2 text-muted-foreground">The category you're looking for doesn't exist.</p>
-      <Link to="/services" className="btn-primary mt-6 inline-flex">Browse all services</Link>
+      <Link to="/services" className="btn-primary mt-6 inline-flex">
+        Browse all services
+      </Link>
     </div>
   ),
 });
@@ -41,7 +43,9 @@ export const Route = createFileRoute("/services/$slug")({
 function CategoryDetail() {
   const { category } = Route.useLoaderData();
   const { open } = useEnquiry();
-  const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number }>>)[category.icon] ?? Icons.Sparkles;
+  const Icon =
+    (Icons as unknown as Record<string, React.ComponentType<{ size?: number }>>)[category.icon] ??
+    Icons.Sparkles;
 
   return (
     <>
@@ -52,7 +56,10 @@ function CategoryDetail() {
           style={{ background: "linear-gradient(180deg, #ffffff 0%, #fff6f6 100%)" }}
         />
         <div className="container-x pt-8 pb-4">
-          <Link to="/services" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
+          <Link
+            to="/services"
+            className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
+          >
             <ChevronLeft size={16} /> Back to services
           </Link>
         </div>
@@ -69,7 +76,8 @@ function CategoryDetail() {
               {category.name}
             </h1>
             <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground md:text-lg">
-              {category.description} Choose a service below or submit a general enquiry — our team connects you with the right expert.
+              {category.description} Choose a service below or submit a general enquiry — our team
+              connects you with the right expert.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <button onClick={() => open(category.name)} className="btn-primary">
@@ -80,11 +88,13 @@ function CategoryDetail() {
               </Link>
             </div>
             <ul className="mt-6 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
-              {["Vetted professionals", "Fast response", "Free enquiry", "Transparent pricing"].map((t) => (
-                <li key={t} className="inline-flex items-center gap-2">
-                  <CheckCircle2 size={15} className="text-primary" /> {t}
-                </li>
-              ))}
+              {["Vetted professionals", "Fast response", "Free enquiry", "Transparent pricing"].map(
+                (t) => (
+                  <li key={t} className="inline-flex items-center gap-2">
+                    <CheckCircle2 size={15} className="text-primary" /> {t}
+                  </li>
+                ),
+              )}
             </ul>
           </motion.div>
           <motion.div
@@ -93,7 +103,12 @@ function CategoryDetail() {
             transition={{ duration: 0.6 }}
             className="overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-elevate)]"
           >
-            <img src={category.image} alt={category.name} loading="eager" className="h-full max-h-[380px] w-full object-cover" />
+            <img
+              src={category.image}
+              alt={category.name}
+              loading="eager"
+              className="h-full max-h-[380px] w-full object-cover"
+            />
           </motion.div>
         </div>
       </section>

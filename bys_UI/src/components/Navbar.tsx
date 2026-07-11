@@ -28,9 +28,7 @@ export function Navbar() {
   return (
     <header
       className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-background/85 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+        scrolled ? "bg-background/85 backdrop-blur-md border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container-x flex h-16 items-center justify-between">
@@ -55,7 +53,11 @@ export function Navbar() {
               to="/services"
               className="inline-flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground data-[status=active]:text-primary"
             >
-              Services <ChevronDown size={14} className={`transition-transform ${megaOpen ? "rotate-180" : ""}`} />
+              Services{" "}
+              <ChevronDown
+                size={14}
+                className={`transition-transform ${megaOpen ? "rotate-180" : ""}`}
+              />
             </Link>
 
             {megaOpen && (
@@ -63,7 +65,10 @@ export function Navbar() {
                 <div className="rounded-2xl border border-border bg-popover p-4 shadow-[var(--shadow-elevate)]">
                   <div className="grid grid-cols-3 gap-x-4 gap-y-1 md:grid-cols-4">
                     {categories.map((c) => {
-                      const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number }>>)[c.icon] ?? Icons.Sparkles;
+                      const Icon =
+                        (
+                          Icons as unknown as Record<string, React.ComponentType<{ size?: number }>>
+                        )[c.icon] ?? Icons.Sparkles;
                       return (
                         <Link
                           key={c.slug}
@@ -124,8 +129,21 @@ export function Navbar() {
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <div className="container-x flex flex-col gap-1 py-3">
-            <Link to="/" activeOptions={{ exact: true }} onClick={() => setMobileOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted data-[status=active]:text-primary">Home</Link>
-            <Link to="/services" onClick={() => setMobileOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted data-[status=active]:text-primary">Services</Link>
+            <Link
+              to="/"
+              activeOptions={{ exact: true }}
+              onClick={() => setMobileOpen(false)}
+              className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted data-[status=active]:text-primary"
+            >
+              Home
+            </Link>
+            <Link
+              to="/services"
+              onClick={() => setMobileOpen(false)}
+              className="rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-muted data-[status=active]:text-primary"
+            >
+              Services
+            </Link>
             {links.slice(1).map((l) => (
               <Link
                 key={l.to}

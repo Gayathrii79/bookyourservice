@@ -13,7 +13,7 @@ export function FloatingButton() {
       transition={{ delay: 0.4, type: "spring", stiffness: 220, damping: 20 }}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.96 }}
-      className="btn-primary fixed bottom-5 right-5 z-40 !px-5 !py-3.5 shadow-[var(--shadow-red)] md:bottom-8 md:right-8"
+      className="btn-primary fixed bottom-5 right-5 z-40 flex items-center gap-2 !px-5 !py-3.5 shadow-[var(--shadow-red)] md:bottom-8 md:right-8"
       aria-label="Request a service"
     >
       <MessageSquarePlus size={18} />

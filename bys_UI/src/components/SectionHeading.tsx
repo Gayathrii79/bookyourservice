@@ -28,9 +28,7 @@ export function SectionHeading({
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-3 text-base text-muted-foreground md:text-[17px]">
-          {subtitle}
-        </p>
+        <p className="mt-3 text-base text-muted-foreground md:text-[17px]">{subtitle}</p>
       )}
     </motion.div>
   );

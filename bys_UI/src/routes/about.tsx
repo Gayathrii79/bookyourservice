@@ -8,9 +8,17 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About — BookYourService" },
-      { name: "description", content: "BookYourService (BYS) is your trusted platform for discovering reliable services. Learn about our mission and how we work." },
+      {
+        name: "description",
+        content:
+          "BookYourService (BYS) is your trusted platform for discovering reliable services. Learn about our mission and how we work.",
+      },
       { property: "og:title", content: "About — BookYourService" },
-      { property: "og:description", content: "Learn about BookYourService and how we connect customers with trusted professionals." },
+      {
+        property: "og:description",
+        content:
+          "Learn about BookYourService and how we connect customers with trusted professionals.",
+      },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -53,26 +61,28 @@ function AboutPage() {
 
         <div className="mx-auto mt-12 max-w-3xl space-y-6 text-[15px] leading-relaxed text-muted-foreground md:text-[17px]">
           <p>
-            BookYourService is your trusted platform for discovering reliable
-            services across multiple categories. From home maintenance to
-            business solutions, we make finding the right professional simple
-            and hassle-free.
+            BookYourService is your trusted platform for discovering reliable services across
+            multiple categories. From home maintenance to business solutions, we make finding the
+            right professional simple and hassle-free.
           </p>
           <p>
-            Instead of searching across multiple platforms, customers can easily
-            submit a service enquiry, and our team personally connects them with
-            the right service provider.
+            Instead of searching across multiple platforms, customers can easily submit a service
+            enquiry, and our team personally connects them with the right service provider.
           </p>
           <p>
-            Our mission is to save your time while delivering trusted, reliable,
-            and convenient service experiences.
+            Our mission is to save your time while delivering trusted, reliable, and convenient
+            service experiences.
           </p>
         </div>
 
         <div className="mt-14 grid gap-5 sm:grid-cols-3">
           {[
             { icon: ShieldCheck, title: "Trust", text: "Every provider is personally vetted." },
-            { icon: HeartHandshake, title: "Service", text: "We stay with you through the process." },
+            {
+              icon: HeartHandshake,
+              title: "Service",
+              text: "We stay with you through the process.",
+            },
             { icon: Sparkles, title: "Simplicity", text: "One enquiry — we handle the rest." },
           ].map((v) => (
             <div key={v.title} className="card-surface p-6 text-center">

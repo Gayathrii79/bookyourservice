@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useMatch } from "@tanstack/react-router";
 import { CategoryCard } from "@/components/CategoryCard";
 import { CategorySearch } from "@/components/CategorySearch";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -8,17 +8,33 @@ export const Route = createFileRoute("/services")({
   head: () => ({
     meta: [
       { title: "All Services — BookYourService" },
-      { name: "description", content: "Browse every service category BookYourService offers — from home care to premium concierge." },
+      {
+        name: "description",
+        content:
+          "Browse every service category BookYourService offers — from home care to premium concierge.",
+      },
       { property: "og:title", content: "All Services — BookYourService" },
-      { property: "og:description", content: "Browse every service category BookYourService offers." },
+      {
+        property: "og:description",
+        content: "Browse every service category BookYourService offers.",
+      },
       { property: "og:url", content: "/services" },
     ],
     links: [{ rel: "canonical", href: "/services" }],
   }),
-  component: ServicesPage,
+  component: ServicesLayout,
 });
 
-function ServicesPage() {
+function ServicesLayout() {
+  // Check if a child route (e.g. /services/$slug) is active
+  const childMatch = useMatch({ from: "/services/$slug", shouldThrow: false });
+
+  // If a child route is matched, render only the child (Outlet) — not the grid
+  if (childMatch) {
+    return <Outlet />;
+  }
+
+  // Otherwise, render the services index page
   return (
     <div className="container-x py-16 md:py-20">
       <SectionHeading

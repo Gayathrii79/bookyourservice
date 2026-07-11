@@ -7,7 +7,10 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — BookYourService" },
-      { name: "description", content: "Get in touch with BookYourService. Email us or reach out on Instagram." },
+      {
+        name: "description",
+        content: "Get in touch with BookYourService. Email us or reach out on Instagram.",
+      },
       { property: "og:title", content: "Contact — BookYourService" },
       { property: "og:description", content: "Get in touch with BookYourService." },
       { property: "og:url", content: "/contact" },
@@ -28,10 +31,7 @@ function ContactPage() {
       />
 
       <div className="mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
-        <a
-          href="mailto:bookyourservicebys@gmail.com"
-          className="card-surface card-hover group p-7"
-        >
+        <a href="mailto:bookyourservicebys@gmail.com" className="card-surface card-hover group p-7">
           <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary/10 text-primary">
             <Mail size={20} />
           </div>
@@ -66,8 +66,12 @@ function ContactPage() {
       <div className="mx-auto mt-10 max-w-4xl">
         <div className="card-surface flex flex-col items-start justify-between gap-4 p-7 md:flex-row md:items-center">
           <div>
-            <h3 className="text-lg font-semibold text-foreground">Prefer to request a service directly?</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Submit an enquiry and we'll get back to you shortly.</p>
+            <h3 className="text-lg font-semibold text-foreground">
+              Prefer to request a service directly?
+            </h3>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Submit an enquiry and we'll get back to you shortly.
+            </p>
           </div>
           <button onClick={() => open()} className="btn-primary shrink-0">
             <MessageSquarePlus size={16} /> Request Service

@@ -1,8 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  ArrowRight, Search, MousePointerClick, MessageSquarePlus, PhoneCall,
-  ShieldCheck, Clock, Network, HeartHandshake, BadgeCheck, Wallet,
+  ArrowRight,
+  Search,
+  MousePointerClick,
+  MessageSquarePlus,
+  PhoneCall,
+  ShieldCheck,
+  Clock,
+  Network,
+  HeartHandshake,
+  BadgeCheck,
+  Wallet,
   Sparkles,
 } from "lucide-react";
 import * as Icons from "lucide-react";
@@ -12,7 +21,10 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { categories } from "@/data/categories";
 import { useEnquiry } from "@/context/enquiry-context";
 import {
-  Accordion, AccordionContent, AccordionItem, AccordionTrigger,
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
 } from "@/components/ui/accordion";
 import heroIllustration from "@/assets/hero-illustration.png";
 
@@ -22,26 +34,59 @@ export const Route = createFileRoute("/")({
 
 // (Hero uses a single premium illustration — no photo collage.)
 
-
 // Curated popular sub-services (category slug + sub name).
-const popularServices: { category: string; slug: string; sub: string; icon: keyof typeof Icons }[] = [
-  { category: "AC & Appliances", slug: "ac-appliances", sub: "AC Service", icon: "AirVent" },
-  { category: "Home Services", slug: "home-services", sub: "Home Deep Cleaning", icon: "Sparkles" },
-  { category: "Electrical", slug: "electrical", sub: "Electrician Visit", icon: "Zap" },
-  { category: "Plumbing", slug: "plumbing", sub: "Tap & Mixer Repair", icon: "Wrench" },
-  { category: "Beauty & Wellness", slug: "beauty-wellness", sub: "Salon at Home", icon: "Scissors" },
-  { category: "Automobile", slug: "automobile", sub: "Car Service", icon: "Car" },
-  { category: "Health", slug: "health", sub: "Nursing at Home", icon: "HeartPulse" },
-  { category: "Moving & Logistics", slug: "moving-logistics", sub: "Home Shifting", icon: "Truck" },
-];
+const popularServices: { category: string; slug: string; sub: string; icon: keyof typeof Icons }[] =
+  [
+    { category: "AC & Appliances", slug: "ac-appliances", sub: "AC Service", icon: "AirVent" },
+    {
+      category: "Home Services",
+      slug: "home-services",
+      sub: "Home Deep Cleaning",
+      icon: "Sparkles",
+    },
+    { category: "Electrical", slug: "electrical", sub: "Electrician", icon: "Zap" },
+    { category: "Plumbing", slug: "plumbing", sub: "Tap & Mixer Repair", icon: "Wrench" },
+    {
+      category: "Beauty & Wellness",
+      slug: "beauty-wellness",
+      sub: "Salon at Home",
+      icon: "Scissors",
+    },
+    { category: "Automobile", slug: "automobile", sub: "Car Service", icon: "Car" },
+    { category: "Health", slug: "health", sub: "Nursing at Home", icon: "HeartPulse" },
+    {
+      category: "Moving & Logistics",
+      slug: "moving-logistics",
+      sub: "Home Shifting",
+      icon: "Truck",
+    },
+  ];
 
 const faqs = [
-  { q: "How does BookYourService work?", a: "Browse or search a service category, submit a short enquiry with your details, and our team calls you back to connect you with a vetted expert." },
-  { q: "Is it free to submit an enquiry?", a: "Yes. Submitting an enquiry is completely free — you only pay the provider for the service delivered." },
-  { q: "How fast will I hear back?", a: "Most enquiries receive a callback within a few hours during working hours. Urgent requests are prioritised." },
-  { q: "Are your service providers verified?", a: "Every provider we recommend is personally vetted for quality, reliability, and fair pricing before being added to our network." },
-  { q: "Which cities do you operate in?", a: "We're currently expanding across major cities in India. Submit an enquiry and we'll confirm availability in your area." },
-  { q: "How do I contact you directly?", a: "Reach us anytime at bookyourservicebys@gmail.com or on Instagram @bookyourservice_bys." },
+  {
+    q: "How does BookYourService work?",
+    a: "Browse or search a service category, submit a short enquiry with your details, and our team calls you back to connect you with a vetted expert.",
+  },
+  {
+    q: "Is it free to submit an enquiry?",
+    a: "Yes. Submitting an enquiry is completely free — you only pay the provider for the service delivered.",
+  },
+  {
+    q: "How fast will I hear back?",
+    a: "Most enquiries receive a callback within a few hours during working hours. Urgent requests are prioritised.",
+  },
+  {
+    q: "Are your service providers verified?",
+    a: "Every provider we recommend is personally vetted for quality, reliability, and fair pricing before being added to our network.",
+  },
+  {
+    q: "Which cities do you operate in?",
+    a: "We're currently expanding across major cities in India. Submit an enquiry and we'll confirm availability in your area.",
+  },
+  {
+    q: "How do I contact you directly?",
+    a: "Reach us anytime at bookyourservicebys@gmail.com or on Instagram @bookyourservice_bys.",
+  },
 ];
 
 function HomePage() {
@@ -55,8 +100,7 @@ function HomePage() {
         <div
           className="pointer-events-none absolute inset-0 -z-10"
           style={{
-            background:
-              "linear-gradient(180deg, #ffffff 0%, #fff6f6 55%, #ffe9e9 100%)",
+            background: "linear-gradient(180deg, #ffffff 0%, #fff6f6 55%, #ffe9e9 100%)",
           }}
         />
         <div className="pointer-events-none absolute -top-32 right-[-10%] -z-10 h-[520px] w-[520px] rounded-full bg-primary/10 blur-3xl" />
@@ -73,20 +117,18 @@ function HomePage() {
                 Trusted service discovery
               </span>
               <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl">
-                Every Service You Need,{" "}
-                <span className="text-primary">Just One Click</span> Away.
+                Every Service You Need, <span className="text-primary">Just One Click</span> Away.
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
-                Discover trusted professionals across 30+ categories.
-                Choose your service, submit an enquiry, and our team will
-                connect you with the right expert.
+                Discover trusted professionals across 30+ categories. Choose your service, submit an
+                enquiry, and our team will connect you with the right expert.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <button onClick={() => open()} className="btn-primary">
-                  Request Service <ArrowRight size={16} />
+                  Request a Service <ArrowRight size={16} />
                 </button>
                 <Link to="/services" className="btn-secondary">
-                  Browse Services
+                  Explore Services
                 </Link>
               </div>
 
@@ -149,7 +191,10 @@ function HomePage() {
         />
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {popularServices.map((s, i) => {
-            const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number }>>)[s.icon] ?? Sparkles;
+            const Icon =
+              (Icons as unknown as Record<string, React.ComponentType<{ size?: number }>>)[
+                s.icon
+              ] ?? Sparkles;
             return (
               <motion.button
                 key={s.sub}
@@ -157,17 +202,22 @@ function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04, duration: 0.35 }}
-                onClick={() => open(`${s.category} — ${s.sub}`)}
+                onClick={() => open(s.category, s.sub)}
                 className="card-surface card-hover group flex items-center gap-3 p-4 text-left"
               >
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
                   <Icon size={18} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-foreground">{s.sub}</span>
+                  <span className="block truncate text-sm font-semibold text-foreground">
+                    {s.sub}
+                  </span>
                   <span className="block truncate text-xs text-muted-foreground">{s.category}</span>
                 </span>
-                <ArrowRight size={16} className="shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-primary" />
+                <ArrowRight
+                  size={16}
+                  className="shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:text-primary"
+                />
               </motion.button>
             );
           })}
@@ -187,7 +237,9 @@ function HomePage() {
           ))}
         </div>
         <div className="mt-8 text-center">
-          <Link to="/services" className="btn-secondary">View services page <ArrowRight size={16} /></Link>
+          <Link to="/services" className="btn-secondary">
+            View services page <ArrowRight size={16} />
+          </Link>
         </div>
       </section>
 
@@ -197,10 +249,26 @@ function HomePage() {
         <div className="relative mt-14 grid gap-8 md:grid-cols-4">
           <div className="pointer-events-none absolute left-0 right-0 top-8 hidden h-px bg-gradient-to-r from-transparent via-border to-transparent md:block" />
           {[
-            { icon: Search, title: "Browse Services", text: "Explore categories that match what you need." },
-            { icon: MousePointerClick, title: "Choose a Service", text: "Pick the exact service and tell us what's up." },
-            { icon: MessageSquarePlus, title: "Submit Enquiry", text: "Share your name, phone and a short message." },
-            { icon: PhoneCall, title: "We'll Contact You", text: "Our team calls back and arranges the right expert." },
+            {
+              icon: Search,
+              title: "Browse Services",
+              text: "Explore categories that match what you need.",
+            },
+            {
+              icon: MousePointerClick,
+              title: "Choose a Service",
+              text: "Pick the exact service and tell us what's up.",
+            },
+            {
+              icon: MessageSquarePlus,
+              title: "Submit Enquiry",
+              text: "Share your name, phone and a short message.",
+            },
+            {
+              icon: PhoneCall,
+              title: "We'll Contact You",
+              text: "Our team calls back and arranges the right expert.",
+            },
           ].map((s, i) => (
             <motion.div
               key={s.title}
@@ -214,7 +282,9 @@ function HomePage() {
                 <s.icon size={22} />
               </div>
               <div className="mt-5 text-center">
-                <div className="text-xs font-semibold uppercase tracking-wider text-primary">Step {i + 1}</div>
+                <div className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  Step {i + 1}
+                </div>
                 <h3 className="mt-1 text-lg font-semibold text-foreground">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.text}</p>
               </div>
@@ -225,18 +295,39 @@ function HomePage() {
 
       {/* Why choose us */}
       <section className="container-x py-14 md:py-20">
-        <SectionHeading
-          eyebrow="Why choose us"
-          title="Built on trust, tuned for you"
-        />
+        <SectionHeading eyebrow="Why choose us" title="Built on trust, tuned for you" />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            { icon: BadgeCheck, title: "Trusted Professionals", text: "Every provider is personally vetted before we recommend." },
-            { icon: Clock, title: "Fast Response", text: "Our team responds to enquiries typically within a few hours." },
-            { icon: Network, title: "Wide Service Network", text: "30+ categories covering everything you need in daily life." },
-            { icon: HeartHandshake, title: "Customer-Focused", text: "We listen carefully and stay with you through the process." },
-            { icon: ShieldCheck, title: "Reliable Assistance", text: "Consistent quality, transparent communication, no surprises." },
-            { icon: Wallet, title: "Affordable Solutions", text: "Honest pricing from providers we trust to be fair." },
+            {
+              icon: BadgeCheck,
+              title: "Trusted Professionals",
+              text: "Every provider is personally vetted before we recommend.",
+            },
+            {
+              icon: Clock,
+              title: "Fast Response",
+              text: "Our team responds to enquiries typically within a few hours.",
+            },
+            {
+              icon: Network,
+              title: "Wide Service Network",
+              text: "30+ categories covering everything you need in daily life.",
+            },
+            {
+              icon: HeartHandshake,
+              title: "Customer-Focused",
+              text: "We listen carefully and stay with you through the process.",
+            },
+            {
+              icon: ShieldCheck,
+              title: "Reliable Assistance",
+              text: "Consistent quality, transparent communication, no surprises.",
+            },
+            {
+              icon: Wallet,
+              title: "Affordable Solutions",
+              text: "Honest pricing from providers we trust to be fair.",
+            },
           ].map((f, i) => (
             <motion.div
               key={f.title}
@@ -258,7 +349,11 @@ function HomePage() {
 
       {/* FAQ */}
       <section className="container-x py-14 md:py-20">
-        <SectionHeading eyebrow="FAQ" title="Questions, answered" subtitle="Everything you need to know before submitting an enquiry." />
+        <SectionHeading
+          eyebrow="FAQ"
+          title="Questions, answered"
+          subtitle="Everything you need to know before submitting an enquiry."
+        />
         <div className="mx-auto mt-10 max-w-2xl">
           <Accordion type="single" collapsible className="w-full">
             {faqs.map((f, i) => (
@@ -298,7 +393,7 @@ function HomePage() {
             onClick={() => open()}
             className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-surface px-6 py-3.5 text-sm font-medium text-primary shadow-[0_10px_30px_-10px_rgba(0,0,0,0.35)] transition hover:-translate-y-0.5"
           >
-            Request Service <ArrowRight size={16} />
+            Request a Service <ArrowRight size={16} />
           </button>
         </motion.div>
       </section>

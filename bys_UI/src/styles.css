@@ -45,8 +45,8 @@
 :root {
   --radius: 0.875rem;
 
-  --background: oklch(0.985 0.003 250);          /* #F8F9FA-ish */
-  --foreground: oklch(0.22 0.01 260);            /* #212121 */
+  --background: oklch(0.985 0.003 250); /* #F8F9FA-ish */
+  --foreground: oklch(0.22 0.01 260); /* #212121 */
   --surface: oklch(1 0 0);
 
   --card: oklch(1 0 0);
@@ -57,7 +57,7 @@
   /* Deep Red #D32F2F */
   --primary: oklch(0.573 0.212 27.5);
   --primary-foreground: oklch(1 0 0);
-  --primary-hover: oklch(0.47 0.20 27.5);        /* #B71C1C */
+  --primary-hover: oklch(0.47 0.2 27.5); /* #B71C1C */
 
   /* Accent #E53935 */
   --accent: oklch(0.605 0.218 27);
@@ -118,7 +118,10 @@
     text-rendering: optimizeLegibility;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
     font-weight: 600;
@@ -130,7 +133,9 @@
   margin-inline: auto;
   padding-inline: 1.25rem;
   max-width: 80rem;
-  @media (min-width: 768px) { padding-inline: 2rem; }
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
 }
 
 @utility btn-primary {
@@ -145,12 +150,17 @@
   font-weight: 500;
   font-size: 0.95rem;
   box-shadow: var(--shadow-red);
-  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
   &:hover {
     background-color: var(--color-primary-hover);
     transform: translateY(-1px);
   }
-  &:active { transform: translateY(0); }
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 @utility btn-secondary {
@@ -177,7 +187,10 @@
   border: 1px solid var(--color-border);
   border-radius: 1.25rem;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 @utility card-hover {
@@ -197,7 +210,9 @@
   font-size: 0.9rem;
   color: var(--color-foreground);
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   &:focus {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-primary) 15%, transparent);

@@ -5,7 +5,10 @@ import * as Icons from "lucide-react";
 import type { Category } from "@/data/categories";
 
 export function CategoryCard({ category, index = 0 }: { category: Category; index?: number }) {
-  const Icon = (Icons as unknown as Record<string, React.ComponentType<{ size?: number; className?: string }>>)[category.icon] ?? Icons.Sparkles;
+  const Icon =
+    (
+      Icons as unknown as Record<string, React.ComponentType<{ size?: number; className?: string }>>
+    )[category.icon] ?? Icons.Sparkles;
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}

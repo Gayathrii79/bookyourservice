@@ -22,7 +22,13 @@ export const categories: Category[] = [
     icon: "Home",
     image: img("photo-1484154218962-a197022b5858"),
     popular: true,
-    subservices: ["Handyman", "Home Deep Cleaning", "Kitchen Cleaning", "Bathroom Cleaning", "Pest Control"],
+    subservices: [
+      "Handyman",
+      "Home Deep Cleaning",
+      "Kitchen Cleaning",
+      "Bathroom Cleaning",
+      "Pest Control",
+    ],
   },
   {
     slug: "electrical",
@@ -51,7 +57,13 @@ export const categories: Category[] = [
     icon: "Wrench",
     image: img("photo-1585704032915-c3400ca199e7"),
     popular: true,
-    subservices: ["Tap & Mixer Repair", "Blockage Removal", "Water Tank Cleaning", "Bathroom Fittings", "Motor & Pump Repair"],
+    subservices: [
+      "Tap & Mixer Repair",
+      "Blockage Removal",
+      "Water Tank Cleaning",
+      "Bathroom Fittings",
+      "Motor & Pump Repair",
+    ],
   },
   {
     slug: "ac-appliances",
@@ -60,7 +72,14 @@ export const categories: Category[] = [
     icon: "AirVent",
     image: img("photo-1631545806609-fadf7e2a0e17"),
     popular: true,
-    subservices: ["AC Service", "AC Repair", "AC Installation", "Refrigerator Repair", "Washing Machine Repair", "Microwave Repair"],
+    subservices: [
+      "AC Service",
+      "AC Repair",
+      "AC Installation",
+      "Refrigerator Repair",
+      "Washing Machine Repair",
+      "Microwave Repair",
+    ],
   },
   {
     slug: "computer-it",
@@ -68,7 +87,14 @@ export const categories: Category[] = [
     description: "Laptop repair, software setup, networking and support.",
     icon: "Laptop",
     image: img("photo-1518770660439-4636190af475"),
-    subservices: ["Laptop Repair", "Desktop Setup", "OS Installation", "Wi-Fi & Networking", "Virus Removal", "Data Recovery"],
+    subservices: [
+      "Laptop Repair",
+      "Desktop Setup",
+      "OS Installation",
+      "Wi-Fi & Networking",
+      "Virus Removal",
+      "Data Recovery",
+    ],
   },
   {
     slug: "automobile",
@@ -76,7 +102,13 @@ export const categories: Category[] = [
     description: "Car & bike service, roadside help and detailing.",
     icon: "Car",
     image: img("photo-1492144534655-ae79c964c9d7"),
-    subservices: ["Car Service", "Bike Service", "Roadside Assistance", "Car Detailing", "Battery Replacement"],
+    subservices: [
+      "Car Service",
+      "Bike Service",
+      "Roadside Assistance",
+      "Car Detailing",
+      "Battery Replacement",
+    ],
   },
   {
     slug: "beauty-wellness",
@@ -85,7 +117,13 @@ export const categories: Category[] = [
     icon: "Sparkles",
     image: img("photo-1560066984-138dadb4c035"),
     popular: true,
-    subservices: ["Salon at Home", "Haircut & Styling", "Spa & Massage", "Bridal Makeup", "Manicure & Pedicure"],
+    subservices: [
+      "Salon at Home",
+      "Haircut & Styling",
+      "Spa & Massage",
+      "Bridal Makeup",
+      "Manicure & Pedicure",
+    ],
   },
   {
     slug: "health",
@@ -93,7 +131,13 @@ export const categories: Category[] = [
     description: "Nurses, physiotherapy, lab tests and home care.",
     icon: "HeartPulse",
     image: img("photo-1576091160399-112ba8d25d1d"),
-    subservices: ["Nursing at Home", "Physiotherapy", "Lab Sample Collection", "Doctor Consultation", "Elderly Care"],
+    subservices: [
+      "Nursing at Home",
+      "Physiotherapy",
+      "Lab Sample Collection",
+      "Doctor Consultation",
+      "Elderly Care",
+    ],
   },
   {
     slug: "education",
@@ -101,7 +145,13 @@ export const categories: Category[] = [
     description: "Tutors, coaching and skill classes at your home.",
     icon: "GraduationCap",
     image: img("photo-1509062522246-3755977927d7"),
-    subservices: ["Home Tuition", "Language Classes", "Music Lessons", "Exam Coaching", "Coding for Kids"],
+    subservices: [
+      "Home Tuition",
+      "Language Classes",
+      "Music Lessons",
+      "Exam Coaching",
+      "Coding for Kids",
+    ],
   },
   {
     slug: "events",
@@ -117,7 +167,13 @@ export const categories: Category[] = [
     description: "Accounting, GST, compliance and business setup.",
     icon: "Briefcase",
     image: img("photo-1454165804606-c3d57bc86b40"),
-    subservices: ["GST Filing", "Company Registration", "Accounting", "Legal Consultation", "Trademark Registration"],
+    subservices: [
+      "GST Filing",
+      "Company Registration",
+      "Accounting",
+      "Legal Consultation",
+      "Trademark Registration",
+    ],
   },
   {
     slug: "real-estate",
@@ -125,7 +181,12 @@ export const categories: Category[] = [
     description: "Rentals, sales, legal help and property consulting.",
     icon: "Building2",
     image: img("photo-1560518883-ce09059eeffa"),
-    subservices: ["Property Rental", "Property Sale", "Property Verification", "Home Loan Assistance"],
+    subservices: [
+      "Property Rental",
+      "Property Sale",
+      "Property Verification",
+      "Home Loan Assistance",
+    ],
   },
   {
     slug: "moving-logistics",
@@ -133,7 +194,13 @@ export const categories: Category[] = [
     description: "Packers, movers and mini-truck transport.",
     icon: "Truck",
     image: img("photo-1600585154340-be6161a56a0c"),
-    subservices: ["Home Shifting", "Office Relocation", "Mini Truck", "Bike Transport", "Packing Services"],
+    subservices: [
+      "Home Shifting",
+      "Office Relocation",
+      "Mini Truck",
+      "Bike Transport",
+      "Packing Services",
+    ],
   },
   {
     slug: "security",
@@ -149,7 +216,14 @@ export const categories: Category[] = [
     description: "Civil work, renovation, painting and interiors.",
     icon: "HardHat",
     image: img("photo-1503387762-592deb58ef4e"),
-    subservices: ["Home Renovation", "Painting", "Tile Work", "False Ceiling", "Waterproofing", "Interior Design"],
+    subservices: [
+      "Home Renovation",
+      "Painting",
+      "Tile Work",
+      "False Ceiling",
+      "Waterproofing",
+      "Interior Design",
+    ],
   },
   {
     slug: "pet-services",
@@ -165,7 +239,13 @@ export const categories: Category[] = [
     description: "Cabs, tours, tickets and travel planning.",
     icon: "Plane",
     image: img("photo-1436491865332-7a61a109cc05"),
-    subservices: ["Cab Booking", "Airport Transfer", "Tour Packages", "Visa Assistance", "Hotel Booking"],
+    subservices: [
+      "Cab Booking",
+      "Airport Transfer",
+      "Tour Packages",
+      "Visa Assistance",
+      "Hotel Booking",
+    ],
   },
   {
     slug: "fashion",
@@ -181,7 +261,13 @@ export const categories: Category[] = [
     description: "Designers, developers, writers and creators on demand.",
     icon: "Code2",
     image: img("photo-1522071820081-009f0129c71c"),
-    subservices: ["Web Development", "Graphic Design", "Content Writing", "Video Editing", "Digital Marketing"],
+    subservices: [
+      "Web Development",
+      "Graphic Design",
+      "Content Writing",
+      "Video Editing",
+      "Digital Marketing",
+    ],
   },
   {
     slug: "rental",
@@ -197,7 +283,13 @@ export const categories: Category[] = [
     description: "Urgent help, on-call assistance and quick response.",
     icon: "Siren",
     image: img("photo-1587691592099-24045742c181"),
-    subservices: ["Emergency Electrician", "Emergency Plumber", "Locksmith", "Roadside Help", "Ambulance"],
+    subservices: [
+      "Emergency Electrician",
+      "Emergency Plumber",
+      "Locksmith",
+      "Roadside Help",
+      "Ambulance",
+    ],
   },
   {
     slug: "agriculture",
@@ -229,7 +321,13 @@ export const categories: Category[] = [
     description: "PAN, passport, licenses and certificate help.",
     icon: "FileText",
     image: img("photo-1450101499163-c8848c66ca85"),
-    subservices: ["PAN Card", "Passport Assistance", "Driving License", "Aadhaar Update", "Certificates"],
+    subservices: [
+      "PAN Card",
+      "Passport Assistance",
+      "Driving License",
+      "Aadhaar Update",
+      "Certificates",
+    ],
   },
   {
     slug: "religious-services",
@@ -273,7 +371,6 @@ export const categories: Category[] = [
   },
 ];
 
-export const getCategory = (slug: string) =>
-  categories.find((c) => c.slug === slug);
+export const getCategory = (slug: string) => categories.find((c) => c.slug === slug);
 
 export const popularCategories = categories.filter((c) => c.popular);
