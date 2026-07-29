@@ -1,18 +1,21 @@
 import { validationResult } from "express-validator";
 import { Enquiry } from "../models/Enquiry.js";
+import { sendEnquiryEmail } from "../services/emailService.js";
 
 /**
  * POST /api/enquiry
  * Create a new enquiry and persist it to MongoDB.
  */
 export async function createEnquiry(req, res, next) {
-  // Surface express-validator errors first
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({
       success: false,
       message: "Validation failed. Please check the fields and try again.",
-      errors: errors.array().map((e) => ({ field: e.path, message: e.msg })),
+      errors: errors.array().map((e) => ({
+        field: e.path,
+        message: e.msg,
+      })),
     });
   }
 
@@ -27,6 +30,13 @@ export async function createEnquiry(req, res, next) {
       message: message?.trim() || "",
     });
 
+    // Send email notification (doesn't stop enquiry from being saved)
+    try {
+      await sendEnquiryEmail(enquiry);
+    } catch (emailError) {
+      console.error("Email sending failed:", emailError.message);
+    }
+
     return res.status(201).json({
       success: true,
       message: "Enquiry submitted successfully.",
@@ -40,7 +50,6 @@ export async function createEnquiry(req, res, next) {
 /**
  * GET /api/enquiries
  * Retrieve all enquiries — reserved for the future admin dashboard.
- * Sorted newest-first. No auth yet; add middleware before release.
  */
 export async function getEnquiries(req, res, next) {
   try {
