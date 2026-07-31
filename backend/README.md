@@ -142,7 +142,7 @@ Submit a new service enquiry.
 | Field | Type | Required | Notes |
 |---|---|---|---|
 | `name` | string | ✅ | 2–100 characters |
-| `phone` | string | ✅ | 7–20 chars, digits / `+` / spaces / dashes |
+| `phone` | string | ✅ | 10, digits / 
 | `category` | string | ❌ | Defaults to `"General"` |
 | `service` | string | ❌ | Sub-service name (e.g. `"Wiring"`) |
 | `message` | string | ❌ | Max 1000 characters |

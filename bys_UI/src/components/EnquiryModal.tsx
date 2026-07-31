@@ -143,15 +143,21 @@ export function EnquiryModal() {
                     />
                   </Field>
                   <Field label="Phone Number" required>
-                    <input
+                  <input
                       value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
+                      onChange={(e) =>
+                        setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
+                      }
                       required
                       type="tel"
-                      inputMode="tel"
-                      placeholder="+91 90000 00000"
+                      inputMode="numeric"
+                      maxLength={10}
+                      minLength={10}
+                      pattern="[6-9][0-9]{9}"
+                      title="Enter a valid 10-digit Indian mobile number"
+                      placeholder="9876543210"
                       className="input"
-                    />
+                  />
                   </Field>
                   <Field label="Category">
                     <select

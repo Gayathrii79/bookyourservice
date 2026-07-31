@@ -2,6 +2,7 @@ import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
+import rateLimit from "express-rate-limit";
 
 import { connectDB } from "./config/db.js";
 import enquiryRoutes from "./routes/enquiryRoutes.js";
@@ -10,6 +11,18 @@ import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// ─── Rate Limiter ──────────────────────────────────────────────────────────
+const enquiryLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 5, // Maximum 5 requests per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many enquiries. Please try again after 10 minutes.",
+  },
+});
+
 // ─── Security ──────────────────────────────────────────────────────────────
 app.use(helmet());
 
@@ -17,18 +30,18 @@ app.use(helmet());
 const allowedOrigins = [
   process.env.FRONTEND_ORIGIN || "http://localhost:3000",
   "http://localhost:3000",
-  "http://localhost:4173",  // vite preview
-  "http://localhost:5173",  // vite dev (fallback)
+  "http://localhost:4173", // Vite Preview
+  "http://localhost:5173", // Vite Dev
 ];
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow server-to-server / Postman requests (no origin header)
+      // Allow Postman or server-to-server requests
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error(`CORS: origin ${origin} not allowed`));
+        callback(new Error(`CORS: Origin ${origin} is not allowed.`));
       }
     },
     methods: ["GET", "POST", "OPTIONS"],
@@ -37,29 +50,34 @@ app.use(
   })
 );
 
-// ─── Body parsing ──────────────────────────────────────────────────────────
+// ─── Body Parsing ──────────────────────────────────────────────────────────
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: false }));
 
-// ─── Health check ──────────────────────────────────────────────────────────
-app.get("/health", (_req, res) =>
-  res.status(200).json({ status: "ok", timestamp: new Date().toISOString() })
-);
+// ─── Health Check ──────────────────────────────────────────────────────────
+app.get("/health", (_req, res) => {
+  res.status(200).json({
+    status: "ok",
+    timestamp: new Date().toISOString(),
+  });
+});
 
-// ─── API routes ────────────────────────────────────────────────────────────
-app.use("/api", enquiryRoutes);
+// ─── API Routes ────────────────────────────────────────────────────────────
+// Apply rate limiter to all API routes
+app.use("/api", enquiryLimiter, enquiryRoutes);
 
-// ─── Error handling ────────────────────────────────────────────────────────
+// ─── Error Handling ────────────────────────────────────────────────────────
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-// ─── Bootstrap ────────────────────────────────────────────────────────────
+// ─── Start Server ──────────────────────────────────────────────────────────
 async function start() {
   await connectDB();
+
   app.listen(PORT, () => {
-    console.log(`🚀  Server running on http://localhost:${PORT}`);
-    console.log(`    Environment : ${process.env.NODE_ENV || "development"}`);
-    console.log(`    CORS origin : ${allowedOrigins.join(", ")}`);
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`Environment : ${process.env.NODE_ENV || "development"}`);
+    console.log(`Allowed Origins : ${allowedOrigins.join(", ")}`);
   });
 }
 

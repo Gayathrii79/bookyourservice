@@ -20,9 +20,9 @@ const enquirySchema = new mongoose.Schema(
       required: [true, "Phone number is required"],
       trim: true,
       match: [
-        /^[+\d\s\-().]{7,20}$/,
-        "Please provide a valid phone number",
-      ],
+  /^[6-9]\d{9}$/,
+  "Please enter a valid 10-digit Indian mobile number",
+],
     },
     category: {
       type: String,
