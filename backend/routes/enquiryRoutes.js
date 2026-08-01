@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { body } from "express-validator";
-
 import { createEnquiry, getEnquiries } from "../controllers/enquiryController.js";
-import { enquiryLimiter } from "../middleware/rateLimiter.js";
 
 const router = Router();
 
@@ -44,7 +42,6 @@ const enquiryValidation = [
 // POST /api/enquiry — Submit a new enquiry
 router.post(
   "/enquiry",
-  enquiryLimiter,
   enquiryValidation,
   createEnquiry
 );

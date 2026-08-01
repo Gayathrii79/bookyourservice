@@ -11,18 +11,6 @@ import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ─── Rate Limiter ──────────────────────────────────────────────────────────
-const enquiryLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutes
-  max: 5, // Maximum 5 requests per IP
-  standardHeaders: true,
-  legacyHeaders: false,
-  message: {
-    success: false,
-    message: "Too many enquiries. Please try again after 10 minutes.",
-  },
-});
-
 // ─── Security ──────────────────────────────────────────────────────────────
 app.use(helmet());
 
@@ -63,8 +51,7 @@ app.get("/health", (_req, res) => {
 });
 
 // ─── API Routes ────────────────────────────────────────────────────────────
-// Apply rate limiter to all API routes
-app.use("/api", enquiryLimiter, enquiryRoutes);
+
 
 // ─── Error Handling ────────────────────────────────────────────────────────
 app.use(notFoundHandler);
