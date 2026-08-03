@@ -20,6 +20,11 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:4173", // Vite Preview
   "http://localhost:5173", // Vite Dev
+
+  "https://bookyourservices.in",
+  "https://www.bookyourservices.in",
+
+  "https://bookyourservice-beryl.vercel.app",
 ];
 
 app.use(
