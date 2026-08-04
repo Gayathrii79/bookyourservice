@@ -5,6 +5,9 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false,
   family: 4,
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
@@ -12,7 +15,12 @@ const transporter = nodemailer.createTransport({
 });
 
 export async function sendEnquiryEmail(enquiry) {
-  await transporter.sendMail({
+  console.log("Sending email...");
+
+  await transporter.verify();
+  console.log("SMTP Connected");
+
+  const info = await transporter.sendMail({
     from: process.env.EMAIL_USER,
     to: process.env.EMAIL_USER,
     subject: `📩 New Enquiry - ${enquiry.service}`,
@@ -25,4 +33,6 @@ export async function sendEnquiryEmail(enquiry) {
       <p><strong>Message:</strong> ${enquiry.message || "No message"}</p>
     `,
   });
+
+  console.log("Email sent:", info.messageId);
 }
