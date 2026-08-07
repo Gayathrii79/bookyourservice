@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export async function sendEnquiryEmail(enquiry) {
+    console.log("API KEY EXISTS:", !!process.env.BREVO_API_KEY);
   try {
     const response = await axios.post(
       "https://api.brevo.com/v3/smtp/email",
