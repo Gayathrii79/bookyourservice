@@ -77,11 +77,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#D32F2F" },
-      { title: "BookYourService — Every Service You Need, Just One Click Away" },
+      {
+        title:
+    "BookYourServices | Trusted Home & Professional Services in Bangalore",
+      },
       {
         name: "description",
         content:
-          "BookYourService (BYS) helps you discover trusted professionals across home, health, business and lifestyle services. Submit an enquiry and our team connects you with the right expert.",
+          "BookYourServices connects you with trusted professionals for plumbing, electrical, cleaning, AC repair, beauty, moving, event, automobile and 30+ other services in Bangalore.",
+      },
+      {
+        name: "keywords",
+         content:
+            "BookYourServices, Home Services, Electrician, Plumber, Cleaning Services, AC Repair, Painting, Pest Control, Packers and Movers, Beauty Services, Bangalore",
       },
       { name: "author", content: "BookYourService" },
       { property: "og:site_name", content: "BookYourService" },
@@ -107,6 +115,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap",
+      },
+      {
+       rel: "canonical",
+       href: "https://bookyourservices.in",
       },
     ],
   }),

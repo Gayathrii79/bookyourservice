@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://bookyourservices.in/sitemap.xml
