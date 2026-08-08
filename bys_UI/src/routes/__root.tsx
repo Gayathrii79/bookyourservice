@@ -106,6 +106,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "twitter:description",
         content: "Discover trusted professionals across a wide range of services.",
       },
+      {
+  name: "google-site-verification",
+  content: "86Q0qI7sKevZHoW9F8ZK85C1t5EfOvmF3lU80uPRpp0",
+},
     ],
     links: [
       { rel: "stylesheet", href: appCss },
