@@ -37,6 +37,11 @@ export function Footer() {
                 Contact
               </Link>
             </li>
+            <li>
+              <Link to="/terms" className="text-muted-foreground hover:text-primary">
+                Terms &amp; Conditions
+              </Link>
+            </li>
           </ul>
         </div>
 

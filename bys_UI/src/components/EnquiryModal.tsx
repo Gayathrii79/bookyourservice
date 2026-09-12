@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useEnquiry } from "@/context/enquiry-context";
 import { categories } from "@/data/categories";
 import { submitEnquiry } from "@/lib/api";
+import { TermsConfirmationModal } from "./TermsConfirmationModal";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -16,6 +17,7 @@ export function EnquiryModal() {
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [showTerms, setShowTerms] = useState(false);
 
   // Sync pre-filled values whenever the modal is opened with a new context
   useEffect(() => {
@@ -43,14 +45,13 @@ export function EnquiryModal() {
     setMessage("");
     setStatus("idle");
     setErrorMsg("");
+    setShowTerms(false);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!name.trim() || !phone.trim()) return;
+  const submitNow = async () => {
+    if (!name.trim() || !phone.trim() || status === "submitting") return;
     setStatus("submitting");
     setErrorMsg("");
-
     try {
       await submitEnquiry({
         name: name.trim(),
@@ -67,168 +68,186 @@ export function EnquiryModal() {
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Open terms confirmation before actual submission
+    setShowTerms(true);
+  };
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-sm sm:items-center sm:p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={close}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="enquiry-title"
-        >
+    <>
+      <AnimatePresence>
+        {isOpen && (
           <motion.div
-            initial={{ y: 40, opacity: 0, scale: 0.98 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            exit={{ y: 30, opacity: 0, scale: 0.98 }}
-            transition={{ type: "spring", damping: 24, stiffness: 260 }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-lg overflow-hidden rounded-t-3xl bg-surface sm:rounded-3xl"
+            className="fixed inset-0 z-50 flex items-end justify-center bg-black/50 p-0 backdrop-blur-sm sm:items-center sm:p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={close}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="enquiry-title"
           >
-            <button
-              onClick={() => {
-                close();
-                setTimeout(reset, 200);
-              }}
-              className="absolute right-4 top-4 rounded-full p-1.5 text-muted-foreground hover:bg-muted"
-              aria-label="Close"
+            <motion.div
+              initial={{ y: 40, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 30, opacity: 0, scale: 0.98 }}
+              transition={{ type: "spring", damping: 24, stiffness: 260 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-lg overflow-hidden rounded-t-3xl bg-surface sm:rounded-3xl"
             >
-              <X size={18} />
-            </button>
+              <button
+                onClick={() => {
+                  close();
+                  setTimeout(reset, 200);
+                }}
+                className="absolute right-4 top-4 rounded-full p-1.5 text-muted-foreground hover:bg-muted"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
 
-            {status === "success" ? (
-              <div className="flex flex-col items-center px-6 py-12 text-center">
-                <div className="mb-4 grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary">
-                  <CheckCircle2 size={30} />
+              {status === "success" ? (
+                <div className="flex flex-col items-center px-6 py-12 text-center">
+                  <div className="mb-4 grid h-14 w-14 place-items-center rounded-full bg-primary/10 text-primary">
+                    <CheckCircle2 size={30} />
+                  </div>
+                  <h3 id="enquiry-title" className="text-xl font-semibold text-foreground">
+                    Thank you!
+                  </h3>
+                  <p className="mt-2 max-w-sm text-sm text-muted-foreground">
+                    Your enquiry has been received. Our team will contact you shortly.
+                  </p>
+                  <button
+                    onClick={() => {
+                      close();
+                      setTimeout(reset, 200);
+                    }}
+                    className="btn-primary mt-6"
+                  >
+                    Done
+                  </button>
                 </div>
-                <h3 id="enquiry-title" className="text-xl font-semibold text-foreground">
-                  Thank you!
-                </h3>
-                <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-                  Your enquiry has been received. Our team will contact you shortly.
-                </p>
-                <button
-                  onClick={() => {
-                    close();
-                    setTimeout(reset, 200);
-                  }}
-                  className="btn-primary mt-6"
-                >
-                  Done
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="px-6 py-7 sm:px-8">
-                <h3
-                  id="enquiry-title"
-                  className="text-xl font-semibold tracking-tight text-foreground"
-                >
-                  Request a Service
-                </h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  Share a few details and our team will call you back.
-                </p>
+              ) : (
+                <form onSubmit={handleSubmit} className="px-6 py-7 sm:px-8">
+                  <h3
+                    id="enquiry-title"
+                    className="text-xl font-semibold tracking-tight text-foreground"
+                  >
+                    Request a Service
+                  </h3>
+                  <p className="mt-1.5 text-sm text-muted-foreground">
+                    Share a few details and our team will call you back.
+                  </p>
 
-                <div className="mt-6 space-y-4">
-                  <Field label="Full Name" required>
-                    <input
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      placeholder="Your name"
-                      className="input"
-                    />
-                  </Field>
-                  <Field label="Phone Number" required>
-                  <input
-                      value={phone}
-                      onChange={(e) =>
-                        setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
-                      }
-                      required
-                      type="tel"
-                      inputMode="numeric"
-                      maxLength={10}
-                      minLength={10}
-                      pattern="[6-9][0-9]{9}"
-                      title="Enter a valid 10-digit Indian mobile number"
-                      placeholder="9876543210"
-                      className="input"
-                  />
-                  </Field>
-                  <Field label="Category">
-                    <select
-                      value={cat}
-                      onChange={(e) => {
-                        setCat(e.target.value);
-                        setSvc("");
-                      }}
-                      className="input"
-                    >
-                      <option value="">Select a category</option>
-                      {categories.map((c) => (
-                        <option key={c.slug} value={c.name}>
-                          {c.name}
-                        </option>
-                      ))}
-                    </select>
-                  </Field>
-
-                  {/* Service dropdown — auto-populated based on selected category */}
-                  {cat && (
-                    <Field label="Service">
+                  <div className="mt-6 space-y-4">
+                    <Field label="Full Name" required>
+                      <input
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        placeholder="Your name"
+                        className="input"
+                      />
+                    </Field>
+                    <Field label="Phone Number" required>
+                      <input
+                        value={phone}
+                        onChange={(e) =>
+                          setPhone(e.target.value.replace(/\D/g, "").slice(0, 10))
+                        }
+                        required
+                        type="tel"
+                        inputMode="numeric"
+                        maxLength={10}
+                        minLength={10}
+                        pattern="[6-9][0-9]{9}"
+                        title="Enter a valid 10-digit Indian mobile number"
+                        placeholder="9876543210"
+                        className="input"
+                      />
+                    </Field>
+                    <Field label="Category">
                       <select
-                        value={svc}
-                        onChange={(e) => setSvc(e.target.value)}
+                        value={cat}
+                        onChange={(e) => {
+                          setCat(e.target.value);
+                          setSvc("");
+                        }}
                         className="input"
                       >
-                        <option value="">Select a service (optional)</option>
-                        {(categories.find((c) => c.name === cat)?.subservices ?? []).map((s) => (
-                          <option key={s} value={s}>
-                            {s}
+                        <option value="">Select a category</option>
+                        {categories.map((c) => (
+                          <option key={c.slug} value={c.name}>
+                            {c.name}
                           </option>
                         ))}
                       </select>
                     </Field>
+
+                    {/* Service dropdown — auto-populated based on selected category */}
+                    {cat && (
+                      <Field label="Service">
+                        <select
+                          value={svc}
+                          onChange={(e) => setSvc(e.target.value)}
+                          className="input"
+                        >
+                          <option value="">Select a service (optional)</option>
+                          {(categories.find((c) => c.name === cat)?.subservices ?? []).map((s) => (
+                            <option key={s} value={s}>
+                              {s}
+                            </option>
+                          ))}
+                        </select>
+                      </Field>
+                    )}
+
+                    <Field label="Message">
+                      <textarea
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        rows={3}
+                        placeholder="Tell us what you need"
+                        className="input resize-none"
+                      />
+                    </Field>
+                  </div>
+
+                  {status === "error" && (
+                    <p className="mt-3 text-sm text-primary" role="alert">
+                      {errorMsg || "Something went wrong. Please try again."}
+                    </p>
                   )}
 
-                  <Field label="Message">
-                    <textarea
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      rows={3}
-                      placeholder="Tell us what you need"
-                      className="input resize-none"
-                    />
-                  </Field>
-                </div>
-
-                {status === "error" && (
-                  <p className="mt-3 text-sm text-primary" role="alert">
-                    {errorMsg || "Something went wrong. Please try again."}
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="btn-primary mt-6 w-full disabled:opacity-70 flex items-center justify-center gap-2"
+                  >
+                    {status === "submitting" && <Loader2 size={16} className="animate-spin" />}
+                    {status === "submitting" ? "Sending…" : "Request Service"}
+                  </button>
+                  <p className="mt-3 text-center text-xs text-muted-foreground">
+                    It's free — no account needed.
                   </p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className="btn-primary mt-6 w-full disabled:opacity-70 flex items-center justify-center gap-2"
-                >
-                  {status === "submitting" && <Loader2 size={16} className="animate-spin" />}
-                  {status === "submitting" ? "Sending…" : "Request Service"}
-                </button>
-                <p className="mt-3 text-center text-xs text-muted-foreground">
-                  It's free — no account needed.
-                </p>
-              </form>
-            )}
+                </form>
+              )}
+            </motion.div>
           </motion.div>
-        </motion.div>
+        )}
+      </AnimatePresence>
+
+      {isOpen && showTerms && (
+        <TermsConfirmationModal
+          onClose={() => setShowTerms(false)}
+          onAccept={async () => {
+            setShowTerms(false);
+            await submitNow();
+          }}
+        />
       )}
-    </AnimatePresence>
+    </>
   );
 }
 
