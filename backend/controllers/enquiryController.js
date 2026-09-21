@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+
 import { Enquiry } from "../models/Enquiry.js";
 import { sendEnquiryEmail } from "../services/emailService.js";
 
@@ -8,6 +9,7 @@ import { sendEnquiryEmail } from "../services/emailService.js";
  */
 export async function createEnquiry(req, res, next) {
   const errors = validationResult(req);
+
   if (!errors.isEmpty()) {
     return res.status(400).json({
       success: false,
@@ -22,6 +24,7 @@ export async function createEnquiry(req, res, next) {
   try {
     const { name, phone, category, service, message } = req.body;
 
+    // Save enquiry to MongoDB first
     const enquiry = await Enquiry.create({
       name: name.trim(),
       phone: phone.trim(),
@@ -30,17 +33,20 @@ export async function createEnquiry(req, res, next) {
       message: message?.trim() || "",
     });
 
-    // Send email notification (doesn't stop enquiry from being saved)
-    try {
-      await sendEnquiryEmail(enquiry);
-    } catch (emailError) {
-      console.error("Email sending failed:", emailError.message);
-    }
-
-    return res.status(201).json({
+    // Respond immediately after successful database save.
+    // The customer does not have to wait for the email server.
+    res.status(201).json({
       success: true,
       message: "Enquiry submitted successfully.",
-      data: { id: enquiry._id },
+      data: {
+        id: enquiry._id,
+      },
+    });
+
+    // Send notification email in the background.
+    // Email failure will not affect the customer's enquiry.
+    sendEnquiryEmail(enquiry).catch((emailError) => {
+      console.error("Email sending failed:", emailError.message);
     });
   } catch (err) {
     next(err);
@@ -56,7 +62,10 @@ export async function getEnquiries(req, res, next) {
     const { status, page = 1, limit = 20 } = req.query;
 
     const filter = {};
-    if (status) filter.status = status;
+
+    if (status) {
+      filter.status = status;
+    }
 
     const skip = (Number(page) - 1) * Number(limit);
 
@@ -66,6 +75,7 @@ export async function getEnquiries(req, res, next) {
         .skip(skip)
         .limit(Number(limit))
         .lean(),
+
       Enquiry.countDocuments(filter),
     ]);
 
