@@ -103,7 +103,7 @@ function HomePage() {
             background: "linear-gradient(180deg, #ffffff 0%, #fff6f6 55%, #ffe9e9 100%)",
           }}
         />
-        <div className="pointer-events-none absolute -top-32 right-[-10%] -z-10 h-[520px] w-[520px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute -top-32 right-0 md:right-[-10%] -z-10 h-[min(90vw,520px)] w-[min(90vw,520px)] md:h-[520px] md:w-[520px] max-w-full rounded-full bg-primary/10 blur-3xl" />
 
         <div className="container-x pt-14 pb-12 md:pt-20 md:pb-16">
           <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">

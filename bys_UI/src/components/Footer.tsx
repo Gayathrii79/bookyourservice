@@ -51,9 +51,10 @@ export function Footer() {
             <li>
               <a
                 href="mailto:bookyourservicebys@gmail.com"
-                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary"
+                className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary min-w-0"
               >
-                <Mail size={16} /> bookyourservicebys@gmail.com
+                <Mail size={16} className="shrink-0" />
+                <span className="break-all">bookyourservicebys@gmail.com</span>
               </a>
             </li>
             <li>
