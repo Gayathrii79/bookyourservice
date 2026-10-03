@@ -90,8 +90,8 @@ export function CategorySearch() {
 
   return (
     <div className="relative mx-auto w-full max-w-xl">
-      <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-3 shadow-[var(--shadow-soft)] focus-within:border-primary focus-within:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_15%,transparent)] transition">
-        <Search size={18} className="text-muted-foreground" />
+      <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2.5 sm:py-3 shadow-[var(--shadow-soft)] focus-within:border-primary focus-within:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-primary)_15%,transparent)] transition">
+        <Search size={18} className="text-muted-foreground shrink-0" />
         <input
           ref={inputRef}
           value={q}
@@ -121,7 +121,7 @@ export function CategorySearch() {
             }
           }}
           placeholder="Search a service — try 'Electrician', 'AC', 'Beauty'"
-          className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
+          className="w-full bg-transparent text-base sm:text-sm text-foreground outline-none placeholder:text-muted-foreground placeholder:text-xs sm:placeholder:text-sm"
           aria-label="Search service categories"
           role="combobox"
           aria-expanded={open && results.length > 0}

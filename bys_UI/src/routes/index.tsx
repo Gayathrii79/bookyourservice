@@ -95,7 +95,7 @@ function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden isolate">
         {/* white → light red gradient background */}
         <div
           className="pointer-events-none absolute inset-0 -z-10"
@@ -103,27 +103,28 @@ function HomePage() {
             background: "linear-gradient(180deg, #ffffff 0%, #fff6f6 55%, #ffe9e9 100%)",
           }}
         />
-        <div className="pointer-events-none absolute -top-32 right-0 md:right-[-10%] -z-10 h-[min(90vw,520px)] w-[min(90vw,520px)] md:h-[520px] md:w-[520px] max-w-full rounded-full bg-primary/10 blur-3xl" />
+        <div className="pointer-events-none absolute -top-24 right-0 md:-top-32 md:-right-10 -z-10 h-64 w-64 md:h-[520px] md:w-[520px] max-w-full rounded-full bg-primary/10 blur-3xl" />
 
-        <div className="container-x pt-14 pb-12 md:pt-20 md:pb-16">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="container-x pt-10 pb-10 sm:pt-14 sm:pb-12 md:pt-20 md:pb-16">
+          <div className="grid items-center gap-8 md:gap-12 lg:grid-cols-[1.05fr_0.95fr]">
             <motion.div
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="w-full max-w-full"
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-primary">
                 <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 Trusted service discovery
               </span>
-              <h1 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight text-foreground md:text-6xl">
+              <h1 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-foreground sm:text-4xl md:text-6xl break-words">
                 Every Service You Need, <span className="text-primary">Just One Click</span> Away.
               </h1>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg">
                 Discover trusted professionals across 30+ categories. Choose your service, submit an
                 enquiry, and our team will connect you with the right expert.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-wrap gap-3 sm:mt-8">
                 <button onClick={() => open()} className="btn-primary">
                   Request a Service <ArrowRight size={16} />
                 </button>
@@ -132,15 +133,15 @@ function HomePage() {
                 </Link>
               </div>
 
-              <div className="mt-10 grid max-w-md grid-cols-3 gap-6">
+              <div className="mt-8 grid max-w-md grid-cols-3 gap-3 sm:mt-10 sm:gap-6">
                 {[
                   { n: "30+", l: "Categories" },
                   { n: "24hr", l: "Response" },
                   { n: "100%", l: "Free enquiry" },
                 ].map((s) => (
-                  <div key={s.l}>
-                    <div className="text-2xl font-semibold text-foreground">{s.n}</div>
-                    <div className="text-xs text-muted-foreground">{s.l}</div>
+                  <div key={s.l} className="min-w-0">
+                    <div className="text-xl font-semibold text-foreground sm:text-2xl">{s.n}</div>
+                    <div className="truncate text-xs text-muted-foreground">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -151,15 +152,15 @@ function HomePage() {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
-              className="relative"
+              className="relative w-full max-w-full"
             >
-              <div className="relative overflow-hidden rounded-3xl border border-border bg-surface shadow-[var(--shadow-elevate)]">
+              <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border bg-surface shadow-[var(--shadow-elevate)]">
                 <img
                   src={heroIllustration}
                   alt="BookYourService professionals — electrician, plumber, cleaner and beautician ready to help at home"
                   width={1280}
                   height={1024}
-                  className="block h-auto w-full"
+                  className="block h-auto w-full max-w-full"
                 />
               </div>
             </motion.div>
@@ -173,11 +174,11 @@ function HomePage() {
           <h2 className="text-xl font-semibold text-foreground md:text-2xl">
             Find a service in seconds
           </h2>
-          <p className="mt-1.5 text-sm text-muted-foreground">
+          <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">
             Search across all 30 categories — try “Ele”, “Plum” or “Beauty”.
           </p>
         </div>
-        <div className="mt-6">
+        <div className="mt-5 sm:mt-6 w-full max-w-full">
           <CategorySearch />
         </div>
       </section>
@@ -377,7 +378,7 @@ function HomePage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative overflow-hidden rounded-3xl bg-primary px-8 py-14 text-center text-primary-foreground md:px-16 md:py-20"
+          className="relative overflow-hidden isolate rounded-3xl bg-primary px-6 py-12 text-center text-primary-foreground sm:px-8 sm:py-14 md:px-16 md:py-20"
         >
           <div className="pointer-events-none absolute inset-0 opacity-30">
             <div className="absolute -right-16 -top-16 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
